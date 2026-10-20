@@ -1,0 +1,10 @@
+# Local infra only: Postgres + Redis. Storage is real AWS S3. The app runs on the host.
+# Postgres is published on 55432 because 5432 is often reserved/occupied (notably on Windows hosts).
+services:
+  postgres:
+    image: postgres:15
+    environment: { POSTGRES_USER: postgres, POSTGRES_PASSWORD: postgres, POSTGRES_DB: image_upload }
+    ports: ["55432:5432"]
+  redis:
+    image: redis:7
+    ports: ["6379:6379"]
